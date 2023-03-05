@@ -10,13 +10,23 @@ async function getGames() {
     const jsonResults = await response.json();
     const results = jsonResults.results;
 
-    resultsContainer.innerHTML = "";
+    console.log(results)
+
+    html = "";
 
     for (let i = 0; i < results.length; i++) {
-        console.log(results[i].name)
+        html += `<div class="games">
+                    <h3 class="name">🎮 ${results[i].name}<\h3>
+                    <p class="rating">⭐ ${results[i].rating}/5<\p>
+                    <p class="tags">🏷️ ${results[i].tags.length}<\p>
+                <\div>`
 
-        resultsContainer.innerHTML += `<div class="">${results[i].name}<\div>`
+        if (i===7){
+            break;
+        }
     }
+
+    resultsContainer.innerHTML = html;
 }
 
 getGames();
